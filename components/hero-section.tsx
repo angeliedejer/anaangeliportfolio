@@ -165,10 +165,12 @@ export function HeroSection() {
                     size="lg"
                     variant="outline"
                     className="border-border hover:bg-card bg-transparent"
-                    onClick={() => scrollToSection("contact")}
+                    asChild
                   >
-                    <Mail className="mr-2 h-4 w-4" />
-                    Contact Me
+                    <Link href="/contacts">
+                      <Mail className="mr-2 h-4 w-4" />
+                      Contact Me
+                    </Link>
                   </Button>
                 </motion.div>
               </motion.div>

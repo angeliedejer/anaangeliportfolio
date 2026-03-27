@@ -10,7 +10,7 @@ Each project card includes:
 ✔ Description
 ✔ Role
 ✔ Learnings
-✔ Tech Tags
+✔ Tech Stacks
 
 📸 Preview
 👉 Live Portfolio Website
@@ -19,8 +19,7 @@ https://anaangeli.vercel.app/
 🧑‍💻 About Me
 I’m Ana Angeli S. Edejer, a Computer Engineering student passionate about:
 UI/UX Design (Figma prototyping, usability design)
-Frontend & Full-Stack Development (React, C#, .NET MAUI, JavaScript/TypeScript, Dart)
-Hardware Programming (Arduino, Digital Circuits, Embedded Systems)
+Frontend & Full-Stack Development
 
 My goal is to design and build systems that are not only functional but also user-friendly and impactful.
 

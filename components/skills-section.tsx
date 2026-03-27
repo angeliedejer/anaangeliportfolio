@@ -32,7 +32,7 @@ const allSkillsList = [
   { name: "TypeScript", logo: "/techstacklogos/Typescript_logo.png" },
   { name: "HTML", logo: "/techstacklogos/HTML5_logo.png" },
   { name: "CSS", logo: "/techstacklogos/css-logo.png" },
-  { name: "Python", logo: "/techstacklogos/python-logo.png" },
+  { name: "Python", logo: "/techstacklogos/Python-logo.png" },
   { name: "Kotlin", logo: "/techstacklogos/kotlin-icon.png" },
   // Frameworks
   { name: ".NET", logo: "/techstacklogos/NET_logo.png" },
@@ -65,7 +65,7 @@ const allSkillsList = [
   { name: "Supabase", logo: "/techstacklogos/supabase.png" },
   { name: "MS Access", logo: "/techstacklogos/MS_Access.png" },
   { name: "MySQL", logo: "/techstacklogos/mysql.png" },
-  { name: "AWS", logo: "/techstacklogos/aws-logo.png" },
+  { name: "AWS", logo: "/techstacklogos/AWS-Logo.png" },
   { name: "Firebase", logo: "/techstacklogos/firebase_icon.png" },
   // AI Tools
   { name: "ChatGPT", logo: "/techstacklogos/ChatGPT_logo.png" },
@@ -88,7 +88,7 @@ const skills = {
     { name: "TypeScript", logo: "/techstacklogos/Typescript_logo.png" },
     { name: "HTML", logo: "/techstacklogos/HTML5_logo.png" },
     { name: "CSS", logo: "/techstacklogos/css-logo.png" },
-    { name: "Python", logo: "/techstacklogos/python-logo.png" },
+    { name: "Python", logo: "/techstacklogos/Python-logo.png" },
     { name: "Kotlin", logo: "/techstacklogos/kotlin-icon.png" },
   ],
   frameworks: [
@@ -125,7 +125,7 @@ const skills = {
     { name: "Supabase", logo: "/techstacklogos/supabase.png" },
     { name: "MS Access", logo: "/techstacklogos/MS_Access.png" },
     { name: "MySQL", logo: "/techstacklogos/mysql.png" },
-    { name: "AWS", logo: "/techstacklogos/aws-logo.png" },
+    { name: "AWS", logo: "/techstacklogos/AWS-Logo.png" },
     { name: "Firebase", logo: "/techstacklogos/firebase_icon.png" },
   ],
   ai_tools: [

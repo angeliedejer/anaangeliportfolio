@@ -47,10 +47,10 @@ export function Footer() {
         {/* Copyright & Tech Stack */}
         <div className="text-center space-y-2">
           <p className="text-[#f0f6fc]/80 text-sm md:text-base font-medium">
-            © {currentYear} Ana Angeli S. Edejer. All rights reserved.
+            © {currentYear} Ana Angeli Edejer. All rights reserved.
           </p>
           <p className="text-[#f0f6fc]/50 text-xs md:text-sm">
-            Built with Next.js & Tailwind CSS. Deployed on Vercel.
+            Built with passion and love ♡
           </p>
         </div>
       </div>

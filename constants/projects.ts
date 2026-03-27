@@ -61,6 +61,8 @@ export const projects: Project[] = [
     date: "Mar 2025 - Apr 2025",
     image: "/projects/gearfolio-logo.png",
     prototypeImage: "/projects/gearfolio-projects.png",
+    figmaUrl: "https://www.figma.com/design/I3GJ8VON0zUeJPKOjOQ6AI/GearFolio-Prototype?node-id=0-1&t=LJ4rBCMVBVIYF4tN-1",
+    showAllButtons: true,
   },
   {
     id: 7,

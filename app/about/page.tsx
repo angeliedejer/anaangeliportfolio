@@ -11,25 +11,9 @@ import { DaizyChatbot } from "@/components/daizy-chatbot"
 
 const quickFacts = [
   { icon: GraduationCap, label: "EDUCATION", value: "Bachelor of Science in Computer Engineering" },
-  { icon: MapPin, label: "BASED IN", value: "Cebu City, Philippines" },
+  { icon: MapPin, label: "LOCATION", value: "Cebu City, Philippines" },
   { icon: Calendar, label: "AVAILABILITY", value: "Open to full-time  & freelance opportunities" },
   { icon: Target, label: "FOCUS AREA", value: "UI/UX Design & Front-end Development" },
-]
-
-const hobbies = [
-  "Learning new design trends",
-  "Exploring frontend frameworks",
-  "Arduino & Hardware tinkering",
-  "Collaborating on creative projects",
-  "Continuous self-improvement",
-]
-
-const interests = [
-  "User-Centered Design (UCD)",
-  "Responsive Web Architecture",
-  "Interactive Prototypes",
-  "IoT & Embedded Systems",
-  "Human-Computer Interaction",
 ]
 
 const internshipResponsibilities = [

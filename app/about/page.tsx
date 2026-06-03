@@ -92,8 +92,8 @@ export default function AboutPage() {
                     </div>
                   </div>
                   <div className="text-left">
-                    <h2 className="text-sm font-bold text-[#f0f6fc] leading-tight">Ana Angeli S. Edejer</h2>
-                    <p className="text-primary text-xs font-medium mt-0.5">Computer Engineering Student</p>
+                    <h2 className="text-sm font-bold text-[#f0f6fc] leading-tight">Engr. Ana Angeli S. Edejer</h2>
+                    <p className="text-primary text-xs font-medium mt-0.5">Computer Engineer</p>
                   </div>
                 </Card>
               </motion.div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
                   </div>
                   <div className="space-y-3 text-[#d1d5db] leading-relaxed text-[13px] md:text-sm">
                     <p>
-                      I'm a detail-oriented Computer Engineering student with a passion for creating innovative solutions that bridge the gap between design, software, and hardware. My journey in technology began with a curiosity about how things work, which led me to explore everything from UI/UX design to Arduino programming.
+                      I'm a detail-oriented Computer Engineering graduate with a passion for creating innovative solutions that bridge the gap between design, software, and hardware. My journey in technology began with a curiosity about how things work, which led me to explore everything from UI/UX design to Arduino programming.
                     </p>
                     <p>
                       Over time, I've developed a deep interest in user-centered design and frontend development. I believe that the best digital products are not only functional but also intuitive and visually engaging. I love the challenge of transforming complex requirements into clean, elegant interfaces that provide seamless user experiences.

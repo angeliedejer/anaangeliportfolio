@@ -174,7 +174,7 @@ const actions = {
   link_opticare: () => window.open("https://www.figma.com/design/yEy8Fb8PxIs2Am8pZB2rXx/OPTICARE-VER.1?t=yDu0fdAPyzSfVAWw-1", "_blank"),
   link_mentor: () => window.open("https://github.com/SeesonLau/ProjectMentorMatch.git", "_blank"),
   link_smashzone: () => window.open("https://github.com/angeliedejer/SmashZone-BadmintonxTennis-BookingHub.git", "_blank"),
-  resume: () => window.open("https://drive.google.com/file/d/17O9zHDUQbwmNGqQeUMp3ZnOACM9T6y6-/view?usp=sharing", "_blank")
+  resume: () => window.open("https://drive.google.com/file/d/1ZnFGdteRVHdXLLRxOcawis1E3FHgLxRa/view?usp=sharing", "_blank")
 }
 
 export function DaizyChatbot() {

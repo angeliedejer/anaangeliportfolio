@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { motion, AnimatePresence } from "framer-motion"
-import { Github, Figma, ExternalLink, ArrowRight } from "lucide-react"
+import { Github, Figma, ExternalLink, ArrowRight, ChevronRight, ChevronLeft } from "lucide-react"
 import Link from "next/link"
 import { projects, type Project } from "@/constants/projects"
 
@@ -46,6 +46,7 @@ const cardVariants = {
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   return (
     <section id="projects" className="py-20 bg-card/30">
@@ -76,6 +77,7 @@ export function ProjectsSection() {
                 className="overflow-hidden bg-[#16161e] border-[#27272a] hover:border-primary/50 transition-all duration-300 cursor-pointer group h-full flex flex-col shadow-2xl rounded-2xl"
                 onClick={() => {
                   setSelectedProject(project)
+                  setCurrentImageIndex(0)
                   setIsModalOpen(true)
                 }}
               >
@@ -136,7 +138,7 @@ export function ProjectsSection() {
 
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
           {/* Wide landscape rectangle on md+, portrait on mobile */}
-          <DialogContent className="w-[95vw] md:w-auto md:max-w-4xl max-h-[90vh] md:max-h-[80vh] overflow-hidden p-0 bg-[#0d0d14] border-[#27272a] text-[#f0f6fc] rounded-2xl">
+          <DialogContent className="w-[95vw] md:w-auto md:max-w-6xl max-h-[90vh] md:max-h-[80vh] overflow-hidden p-0 bg-[#0d0d14] border-[#27272a] text-[#f0f6fc] rounded-2xl">
             {selectedProject && (
               <>
                 {/* Hidden header for accessibility */}
@@ -149,12 +151,48 @@ export function ProjectsSection() {
                 <div className="flex flex-col md:flex-row h-full">
 
                   {/* LEFT: Prototype image — flush, no padding */}
-                  <div className="w-full md:w-[50%] bg-[#0a0a10] flex items-center justify-center p-6 md:p-8 md:border-r border-b md:border-b-0 border-[#27272a]">
-                    {selectedProject.prototypeImage ? (
+                  <div className="w-full md:w-[50%] bg-[#0a0a10] flex items-center justify-center p-0 md:border-r border-b md:border-b-0 border-[#27272a] overflow-hidden relative">
+                    {selectedProject.prototypeImages && selectedProject.prototypeImages.length > 1 ? (
+                      <>
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={currentImageIndex}
+                            src={selectedProject.prototypeImages[currentImageIndex]}
+                            alt={`${selectedProject.title} prototype`}
+                            className="w-full h-full max-h-[50vh] md:max-h-[75vh] object-contain"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -50 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                          />
+                        </AnimatePresence>
+                        {/* Navigation buttons */}
+                        {currentImageIndex > 0 && (
+                          <button
+                            onClick={() => setCurrentImageIndex(prev => prev - 1)}
+                            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+                          >
+                            <ChevronLeft className="h-6 w-6" />
+                          </button>
+                        )}
+                        {currentImageIndex < selectedProject.prototypeImages.length - 1 && (
+                          <button
+                            onClick={() => setCurrentImageIndex(prev => prev + 1)}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors z-10"
+                          >
+                            <ChevronRight className="h-6 w-6" />
+                          </button>
+                        )}
+                        {/* Image counter */}
+                        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm z-10">
+                          {currentImageIndex + 1} / {selectedProject.prototypeImages.length}
+                        </div>
+                      </>
+                    ) : selectedProject.prototypeImage ? (
                       <img
                         src={selectedProject.prototypeImage}
                         alt={`${selectedProject.title} prototype`}
-                        className="w-full h-auto max-h-[40vh] md:max-h-[65vh] object-contain"
+                        className="w-full h-full max-h-[50vh] md:max-h-[75vh] object-contain"
                       />
                     ) : (
                       <div className="flex flex-col items-center justify-center text-center p-8">
@@ -166,7 +204,7 @@ export function ProjectsSection() {
                   </div>
 
                   {/* RIGHT: Details + buttons — scrollable */}
-                  <div className="w-full md:w-[50%] p-6 md:p-8 overflow-y-auto max-h-[50vh] md:max-h-[80vh] scrollbar-hide flex flex-col gap-5">
+                  <div className="w-full md:w-[50%] p-6 md:p-8 overflow-y-auto max-h-[45vh] md:max-h-[80vh] scrollbar-hide flex flex-col gap-5">
                     {/* Category & Date */}
                     <div>
                       <p className="text-xs text-primary uppercase tracking-widest font-bold mb-1">{selectedProject.date}</p>
@@ -225,6 +263,16 @@ export function ProjectsSection() {
                               Source Code
                             </Button>
                           )}
+                          {selectedProject.githubUrls?.map((repo, index) => (
+                            <Button
+                              key={index}
+                              className="bg-primary hover:bg-secondary"
+                              onClick={() => window.open(repo.url, "_blank")}
+                            >
+                              <Github className="h-4 w-4 mr-2" />
+                              {repo.label}
+                            </Button>
+                          ))}
                           {selectedProject.figmaUrl && (
                             <Button
                               variant="outline"
@@ -247,6 +295,16 @@ export function ProjectsSection() {
                               Source Code
                             </Button>
                           )}
+                          {selectedProject.githubUrls?.map((repo, index) => (
+                            <Button
+                              key={index}
+                              className="bg-primary hover:bg-secondary"
+                              onClick={() => window.open(repo.url, "_blank")}
+                            >
+                              <Github className="h-4 w-4 mr-2" />
+                              {repo.label}
+                            </Button>
+                          ))}
                           {selectedProject.figmaUrl && (
                             <Button
                               variant="outline"
@@ -259,17 +317,77 @@ export function ProjectsSection() {
                           )}
                         </>
                       ) : (
-                        selectedProject.githubUrl && (
-                          <Button
-                            className="bg-primary hover:bg-secondary"
-                            onClick={() => window.open(selectedProject.githubUrl, "_blank")}
-                          >
-                            <Github className="h-4 w-4 mr-2" />
-                            Source Code
-                          </Button>
-                        )
+                        <>
+                          {selectedProject.githubUrl && (
+                            <Button
+                              className="bg-primary hover:bg-secondary"
+                              onClick={() => window.open(selectedProject.githubUrl, "_blank")}
+                            >
+                              <Github className="h-4 w-4 mr-2" />
+                              Source Code
+                            </Button>
+                          )}
+                          {selectedProject.githubUrls?.map((repo, index) => (
+                            <Button
+                              key={index}
+                              className="bg-primary hover:bg-secondary"
+                              onClick={() => window.open(repo.url, "_blank")}
+                            >
+                              <Github className="h-4 w-4 mr-2" />
+                              {repo.label}
+                            </Button>
+                          ))}
+                        </>
                       )}
                     </div>
+
+                    {/* Special Links Section with Different Layout */}
+                    {(selectedProject.researchPaperUrl || selectedProject.kickstarterVideoUrl) && (
+                      <div className="mt-4 pt-4 border-t border-[#27272a]">
+                        <h4 className="text-xs font-bold text-primary uppercase tracking-widest mb-3">Resources</h4>
+                        <div className="flex flex-col gap-2">
+                          {selectedProject.researchPaperUrl && (
+                            <button
+                              onClick={() => window.open(selectedProject.researchPaperUrl, "_blank")}
+                              className="flex items-center justify-between w-full bg-[#16161e] border border-[#27272a] hover:border-primary/50 hover:bg-[#16161e]/80 px-4 py-3 rounded-lg transition-all duration-300 group"
+                            >
+                              <div className="flex items-center">
+                                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
+                                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                  </svg>
+                                </div>
+                                <div className="text-left">
+                                  <span className="text-sm font-semibold text-[#f0f6fc]">Research Paper</span>
+                                  <p className="text-xs text-[#9ca3af] mt-0.5">Read the full documentation</p>
+                                </div>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-[#9ca3af] group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+                            </button>
+                          )}
+                          {selectedProject.kickstarterVideoUrl && (
+                            <button
+                              onClick={() => window.open(selectedProject.kickstarterVideoUrl, "_blank")}
+                              className="flex items-center justify-between w-full bg-[#16161e] border border-[#27272a] hover:border-primary/50 hover:bg-[#16161e]/80 px-4 py-3 rounded-lg transition-all duration-300 group"
+                            >
+                              <div className="flex items-center">
+                                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center mr-3">
+                                  <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                  </svg>
+                                </div>
+                                <div className="text-left">
+                                  <span className="text-sm font-semibold text-[#f0f6fc]">Kickstarter Video</span>
+                                  <p className="text-xs text-[#9ca3af] mt-0.5">Watch the project demonstration</p>
+                                </div>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-[#9ca3af] group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </>

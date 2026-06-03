@@ -9,10 +9,14 @@ export interface Project {
   date: string
   image: string
   prototypeImage: string
+  prototypeImages?: string[]
   showAllButtons?: boolean
   githubUrl?: string
+  githubUrls?: { label: string, url: string }[]
   figmaUrl?: string
   liveUrl?: string
+  researchPaperUrl?: string
+  kickstarterVideoUrl?: string
 }
 
 export const projects: Project[] = [
@@ -22,13 +26,22 @@ export const projects: Project[] = [
     category: "both",
     tags: ["React", "TypeScript", "Next.js", "Supabase", "SQL", "Python", "Raspberry Pi"],
     description:
-      "BraillePhonics+ is an inclusive, AI-enhanced Braille literacy system designed to support early learners—especially visually impaired and deafblind children—by providing real-time multimodal feedback through speech and haptics. It integrates RFID-enabled tactile tiles, embedded systems, and a web-based dashboard to deliver interactive learning experiences in letter recognition, phonics, and basic word formation, making Braille education more engaging, accessible, and effective.",
+      "BraillePhonics+ is an inclusive Braille literacy system designed to support early learners—especially visually impaired and deafblind children—by providing real-time multimodal feedback through speech and haptics. It integrates RFID-enabled tactile tiles, embedded systems, and a web-based dashboard to deliver interactive learning experiences in letter recognition, phonics, and basic word formation, making Braille education more engaging, accessible, and effective.",
     role: "Researcher & Developer - developed and integrated the system’s hardware and software, including RFID detection, feedback mechanisms, and the web dashboard.",
     learning:
-      "Gained practical experience in developing assistive technology systems by combining embedded systems, web development, and AI concepts, while strengthening skills in problem-solving, system integration, and designing inclusive, user-centered solutions.",
+      "Gained practical experience in developing assistive technology systems by combining embedded systems, web development, while strengthening skills in problem-solving, system integration, and designing inclusive, user-centered solutions.",
     date: "Sep 2025 - May 2026",
-    image: "",
-    prototypeImage: "",
+    image: "/projects/braillephonics-logo.png",
+    prototypeImage: "/projects/braillephonics-prototype.png",
+    prototypeImages: ["/projects/braillephonics-prototype.png", "/projects/braillephonics-prototype2.png"],
+    liveUrl: "https://www.braillephonics.online/",
+    githubUrls: [
+      { label: "Software", url: "https://github.com/executeshawn/braillephonics-plus" },
+      { label: "Firmware", url: "https://github.com/executeshawn/braillephonics-firmware" }
+    ],
+    researchPaperUrl: "https://drive.google.com/file/d/1qFWeHaBaClZpKM-Xqssx1LWhWN8ABh7X/view?usp=sharing",
+    kickstarterVideoUrl: "https://drive.google.com/file/d/1oVGchtRIhPJ98OhsxefkVNt8Prt_Bqas/view?usp=sharing",
+    showAllButtons: true,
   },
   {
     id: 8,

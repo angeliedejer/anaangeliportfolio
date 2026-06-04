@@ -122,7 +122,7 @@ export function HeroSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                Detail-oriented Computer Engineering gradute with a strong foundation in software development and UI/UX
+                Detail-oriented Computer Engineering graduate with a strong foundation in software development and UI/UX
                 design. Passionate about creating innovative solutions through thoughtful design and clean code.
               </motion.p>
               <motion.div
